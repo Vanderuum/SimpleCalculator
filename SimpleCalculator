@@ -1,0 +1,84 @@
+Console.WriteLine("Hello!");
+Console.WriteLine("Input the first number:");
+bool inputOn = true;
+int userInput1 = UserInput();
+Console.WriteLine("Input the second number:");
+inputOn = true;
+int userInput2 = UserInput();
+inputOn = true;
+Console.WriteLine("What do you want to do with those numbers?");
+Console.WriteLine("[A]dd");
+Console.WriteLine("[S]ubtract");
+Console.WriteLine("[M]ultiply");
+while (inputOn == true)
+{
+    string userCalc = Console.ReadLine() ?? string.Empty;
+    string userCalcChoice = userCalc.ToUpper();
+    switch (userCalcChoice)
+    {
+        case "A":
+            Calculation(userInput1, userInput2, userCalcChoice);
+            inputOn = false;
+            break;
+        case "S":
+            Calculation(userInput1, userInput2, userCalcChoice);
+            inputOn = false;
+            break;
+        case "M":
+            Calculation(userInput1, userInput2, userCalcChoice);
+            inputOn = false;
+            break;
+        default:
+            Console.WriteLine("Please enter a valid key choice.");
+            break;
+    }
+}
+
+
+Console.WriteLine("Press any key to close");
+Console.ReadKey();
+
+void Calculation(int a, int b, string calc)
+{
+    calc = calc.ToUpper();
+    if (calc == "A")
+    {
+        int sum = a + b;
+        Console.WriteLine(a + " + " + b + " = " + sum);
+    }
+
+    else if (calc == "S")
+    {
+        int subtract = a - b;
+        Console.WriteLine(a + " - " + b + " = " + subtract);
+    }
+
+    else if (calc == "M")
+    {
+        int multiply = a * b;
+        Console.WriteLine(a + " x " + b + " = " + multiply);
+    }
+}
+int UserInput()
+{
+    string finalUserInput = "";
+    while (inputOn == true)
+    {
+        string strUserInput = Console.ReadLine() ?? string.Empty;
+         
+        if (string.IsNullOrEmpty(strUserInput))
+        {
+            Console.WriteLine("Please enter a valid number.");
+        }
+        else if (!int.TryParse(strUserInput, out _))
+        {
+            Console.WriteLine("Please enter a valid number.");
+        }
+        else
+        {
+            inputOn = false;
+            finalUserInput = strUserInput;
+        }
+    }
+    return int.Parse(finalUserInput);
+}
